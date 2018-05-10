@@ -1,0 +1,2 @@
+# CanadianCheckers
+Canadian Checkers AI
