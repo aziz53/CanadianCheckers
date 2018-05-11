@@ -6,16 +6,9 @@
 import java.awt.*;
 import java.awt.event.*;
 import javax.swing.*;
-import javax.imageio.*;
-import java.io.*;
-import java.util.*;
 
-public class MainMenu extends JFrame implements ActionListener{
-  
-  //Declare JPanel for the menu and for the game screen
-  JPanel mainMenu = new JPanel();
-  JPanel game = new JPanel();
-  
+public class MainMenu extends JPanel implements ActionListener {
+
   //Create a title to place on the menu panel
   JLabel menuTitle = new JLabel("Canadian Checkers", SwingConstants.CENTER);
   
@@ -32,15 +25,6 @@ public class MainMenu extends JFrame implements ActionListener{
   
   //Constructor that creates the GUI for main menu
   public MainMenu(){
-    
-    //Set the title of the fram as well as size
-    setTitle("Canadian Checkers");
-    setSize(800,800);
-    
-    //Make the size unchangable by the user
-    setResizable(false);
-    
-    //Set the layout of the fram
     setLayout(new GridBagLayout());
     
     //Add an action listener to each button
@@ -48,7 +32,7 @@ public class MainMenu extends JFrame implements ActionListener{
     quit.addActionListener(this);
     
     //Set the layout of the menu panel
-    mainMenu.setLayout(new GridBagLayout());
+    setLayout(new GridBagLayout());
     
     //Set the layout constraints
     gbc.fill = GridBagConstraints.HORIZONTAL;
@@ -61,26 +45,16 @@ public class MainMenu extends JFrame implements ActionListener{
     gbc.gridx = 2;
     gbc.gridy = 0;
     menuTitle.setFont(new Font("Serif", Font.BOLD, 24));
-    mainMenu.add(menuTitle,gbc);
+    add(menuTitle,gbc);
     gbc.gridx = 2;
     gbc.gridy = 1;
-    mainMenu.add(play,gbc);
+    add(play,gbc);
     gbc.gridx = 2;
     gbc.gridy = 2;
-    mainMenu.add(quit,gbc);
+    add(quit,gbc);
     gbc.gridx=2;
     gbc.gridy=9;
-    mainMenu.add(menuPic,gbc);
-    
-    
-    //Add the panels to the fram
-    add(mainMenu);
-    add(game);
-    
-    //Set the frame to visible and the menu panel
-    mainMenu.setVisible(true);
-    game.setVisible(false);
-    setVisible(true);
+    add(menuPic,gbc);
   }
   
   //Action performed method to determine what the user wants to do
@@ -93,20 +67,13 @@ public class MainMenu extends JFrame implements ActionListener{
       
       //If the play button is pressed change the visibility of panels
       if(buttonPressed.equals(play)){
-        mainMenu.setVisible(false);
-        game.setVisible(true);
+        CanadianCheckers.setContent(new BoardPanel());
       }
       //else if the quit button is pressed close the frame
       else if(buttonPressed.equals(quit)){
-        this.dispose();
+        System.exit(0);
       }
     }
-  }
-  
-  public static void main(String [] args){
-    //Declare the JFrame
-    MainMenu frame1 = new MainMenu();
-    frame1.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
   }
   
 }
