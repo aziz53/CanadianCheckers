@@ -1,18 +1,17 @@
 //Imports
 import javax.imageio.ImageIO;
 import javax.swing.*;
-import java.awt.Graphics;
+import javax.swing.border.EmptyBorder;
+import java.awt.*;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
-import java.awt.Color;
 
 //Board Panel Class
-public class BoardPanel extends JFrame {
+public class BoardPanel extends JPanel {
 
 	/*
 	 * The Paint Method This Method Creates the Board and Checker Pieces
-	 * 
 	 * @param g Graphics for drawing checker board
 	 */
 	public void paint(Graphics g) {
@@ -31,21 +30,20 @@ public class BoardPanel extends JFrame {
 
 				// Drawing Squares
 				if ((row % 2) == (col % 2)) {
-					g.setColor(Color.gray);
+					g.setColor(new Color(119, 95, 62));
 				} else {
-					g.setColor(Color.LIGHT_GRAY);
+					g.setColor(new Color(66, 50, 27));
 				}
 				g.fillRect(x, y, 60, 60);
 			} // End or column loop
 		} // End of row loop
 			// Calling updateBoard Method
-		updateBoard(g, CheckerPiece.checkerBoard); // Change for actual class
+		updateBoard(g, CanadianCheckers.board); // Change for actual class
 	}
 
 	/*
 	 * The updateBoard Method This method draws the checker pieces on the board
 	 * given the 2d array
-	 * 
 	 * @param checkerBoard A 2D array containing the checker board pieces
 	 */
 	public void updateBoard(Graphics g, CheckerPiece [][] checkerBoard) {
@@ -84,10 +82,6 @@ public class BoardPanel extends JFrame {
 					//Drawing Crown
 					if (checkerBoard[row][col] instanceof King) {
 						g.drawImage(image,(col * 60)+ 12 ,(row * 60) + 25,35,10,this);
-						
-						
-					    
-						System.out.println("Heyyyy");
 					}
 				}
 

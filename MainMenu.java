@@ -3,6 +3,8 @@
  * GUI class for that creates the menu
  * May 11, 2018
  */
+import jdk.internal.util.xml.impl.Input;
+
 import java.awt.*;
 import java.awt.event.*;
 import javax.swing.*;
@@ -68,6 +70,7 @@ public class MainMenu extends JPanel implements ActionListener {
       //If the play button is pressed change the visibility of panels
       if(buttonPressed.equals(play)){
         CanadianCheckers.setContent(new BoardPanel());
+        InputLog log = new InputLog();
       }
       //else if the quit button is pressed close the frame
       else if(buttonPressed.equals(quit)){
