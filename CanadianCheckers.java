@@ -5,6 +5,7 @@ import javax.swing.JPanel;
 public class CanadianCheckers extends JFrame {
 	
 	public static CanadianCheckers frame;
+	public static CheckerPiece[][] board;
 	
 	/**
 	 * Method that sets the content panel for the JFrame.
@@ -15,10 +16,23 @@ public class CanadianCheckers extends JFrame {
 		frame.revalidate();
 	}
 	
+	/**
+	 * Method to create the board with empty pieces.
+	 */
+	public static void initializeBoard(){
+		board = new CheckerPiece[12][12];
+		for(int row = 0; row < 12; row++){
+			for(int col = 0; col < 12; col++){
+				CheckerPiece piece = new CheckerPiece();
+				board[row][col] = piece;
+			}
+		}
+	}
+	
 	public CanadianCheckers(){
 		setTitle("Canadian Checkers");
 		setVisible(true);
-		setSize(800, 800);
+		setSize(720, 745);
 		setResizable(false);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 	}
@@ -26,6 +40,7 @@ public class CanadianCheckers extends JFrame {
 	public static void main(String[] args){
 		System.out.println("> Starting Canadian Checkers...");
 		frame = new CanadianCheckers();
+		initializeBoard();
 		setContent(new MainMenu());
 	}
 	
