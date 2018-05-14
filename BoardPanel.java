@@ -35,7 +35,7 @@ public class BoardPanel extends JFrame {
 			} // End or column loop
 		} // End of row loop
 			// Calling updateBoard Method
-		updateBoard(g, CanadianCheckers.checkerBoard); // Change for actual class
+		updateBoard(g, CheckerPiece.checkerBoard); // Change for actual class
 	}
 
 	/*
@@ -57,16 +57,16 @@ public class BoardPanel extends JFrame {
 				if (checkerBoard[row][col].getExistence()) {
 
 					// Setting co-ordinates of checker pieces
-					x = (col * 60) + 25;
-					y = (row * 60) + 25;
+					x = (col * 60) + 12;
+					y = (row * 60) + 12;
 
 					// Drawing checker piece if it exists
 					if (checkerBoard[row][col].getStatus() == true) {
-						g.setColor(Color.GREEN);
-						g.fillOval(x, y, 40, 40);
+						g.setColor(Color.WHITE);
+						g.fillOval(x, y, 35, 35);
 					} else {
-						g.setColor(Color.RED);
-						g.fillOval(x, y, 40, 40);
+						g.setColor(Color.BLACK);
+						g.fillOval(x, y, 35, 35);
 					}
 				}
 
