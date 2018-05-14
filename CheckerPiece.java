@@ -53,7 +53,23 @@ public class CheckerPiece {
   //@returns the existence of the piece
   public boolean getExistence() { 
     return this.doesExist;
-  }                              
+  } 
+  
+  /**
+   * Method to set if a piece exists or not.
+   * @param exist whether or not the piece exists.
+   */
+  public void setExistence(boolean exist){
+	  this.doesExist = exist;
+  }
+  
+  /**
+   * Method to set the colour of a piece.
+   * @param status the colour of the piece (status)
+   */
+  public void setStatus(boolean status){
+	  this.status = status;
+  }
   
   //sets the coordinate of the piece on the board
   //@param1 is the x coordinate of the piece
