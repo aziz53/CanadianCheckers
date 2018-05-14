@@ -1,6 +1,10 @@
 //Imports
+import javax.imageio.ImageIO;
 import javax.swing.*;
 import java.awt.Graphics;
+import java.awt.image.BufferedImage;
+import java.io.File;
+import java.io.IOException;
 import java.awt.Color;
 
 //Board Panel Class
@@ -49,6 +53,14 @@ public class BoardPanel extends JFrame {
 		// Variables
 		int x;
 		int y;
+		BufferedImage image = null;
+		
+		try {
+			image = ImageIO.read(new File("crown.png"));
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 
 		// For loop through each row element
 		for (int row = 0; row < checkerBoard.length; row++) {
@@ -63,10 +75,19 @@ public class BoardPanel extends JFrame {
 					// Drawing checker piece if it exists
 					if (checkerBoard[row][col].getStatus() == true) {
 						g.setColor(Color.WHITE);
-						g.fillOval(x, y, 35, 35);
+					
 					} else {
-						g.setColor(Color.BLACK);
-						g.fillOval(x, y, 35, 35);
+						g.setColor(Color.BLACK);	
+					}
+					g.fillOval(x, y, 35, 35);
+					
+					//Drawing Crown
+					if (checkerBoard[row][col] instanceof King) {
+						g.drawImage(image,(col * 60)+ 12 ,(row * 60) + 25,35,10,this);
+						
+						
+					    
+						System.out.println("Heyyyy");
 					}
 				}
 
