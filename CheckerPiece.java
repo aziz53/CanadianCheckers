@@ -68,15 +68,15 @@ public class CheckerPiece {
     if(this.status) {
       
       //Checks whether or not a piece to the diagonal top left of the piece and if its opposite status
-      if (board[this.returnXCoord()-1][this.returnYCoord()+1].getExistence()) {
-        if(board[this.returnXCoord()-1][this.returnYCoord()+1].getStatus()!=this.status) {
+      if (CanadianCheckers.board[this.returnXCoord()-1][this.returnYCoord()+1].getExistence()) {
+        if(CanadianCheckers.board[this.returnXCoord()-1][this.returnYCoord()+1].getStatus()!=this.status) {
          return true; 
         }
       }
       
       //Checks whether or not a piece to the diagonal top right of the piece and if its opposite status
-      if (board[this.returnXCoord()+1][this.returnYCoord()+1].getExistence()) {
-        if(board[this.returnXCoord()+1][this.returnYCoord()+1].getStatus()!=this.status) {
+      if (CanadianCheckers.board[this.returnXCoord()+1][this.returnYCoord()+1].getExistence()) {
+        if(CanadianCheckers.board[this.returnXCoord()+1][this.returnYCoord()+1].getStatus()!=this.status) {
          return true; 
         }
       }
@@ -87,15 +87,15 @@ public class CheckerPiece {
     else if (!this.status){
       
       //Checks whether or not a piece to the diagonal top left of the piece and if its opposite status
-      if (board[this.returnXCoord()-1][this.returnYCoord()-1].getExistence()) {
-        if(board[this.returnXCoord()-1][this.returnYCoord()-1].getStatus()!=this.status) {
+      if (CanadianCheckers.board[this.returnXCoord()-1][this.returnYCoord()-1].getExistence()) {
+        if(CanadianCheckers.board[this.returnXCoord()-1][this.returnYCoord()-1].getStatus()!=this.status) {
          return true; 
         }
       }
       
       //Checks whether or not a piece to the diagonal top right of the piece and if its opposite status
-      if (board[this.returnXCoord()+1][this.returnYCoord()-1].getExistence()) {
-        if(board[this.returnXCoord()+1][this.returnYCoord()-1].getStatus()!=this.status) {
+      if (CanadianCheckers.board[this.returnXCoord()+1][this.returnYCoord()-1].getExistence()) {
+        if(CanadianCheckers.board[this.returnXCoord()+1][this.returnYCoord()-1].getStatus()!=this.status) {
          return true; 
         }
       }
