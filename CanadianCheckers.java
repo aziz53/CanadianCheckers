@@ -27,6 +27,30 @@ public class CanadianCheckers extends JFrame {
 				board[row][col] = piece;
 			}
 		}
+		
+		for(int i = 0; i < 5; i++){
+			for(int j = 0; j < 12; j+=2){
+				if(i % 2 == 0 && j == 0){
+					j = 1;
+				}
+				CheckerPiece piece = board[i][j];
+				piece.setExistence(true);
+				piece.setStatus(true);
+			}
+		}
+		
+		for(int i = 11; i > 6; i--){
+			for(int j = 0; j < 12; j+=2){
+				if(i % 2 != 0 && j == 0){
+					j = 1;
+				}
+				CheckerPiece piece = board[i][j];
+				piece.setExistence(true);
+				piece.setStatus(false);
+			}
+		}
+		
+		
 	}
 	
 	public CanadianCheckers(){
