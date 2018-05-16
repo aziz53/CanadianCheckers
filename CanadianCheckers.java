@@ -53,6 +53,56 @@ public class CanadianCheckers extends JFrame {
 		
 	}
 	
+	 public static void buildTree(CheckerPiece[][] board){
+   int max = 0;
+   int oldX = 0;
+   int oldY = 0;
+   int maxX = 0;
+   int maxY = 0;
+   for(int i=0; i<board[i].length; i++){
+     for(int j=0; j<board[j].length; j++){
+       if(board[i][j].getStatus() == true){
+         int points = board[i][j].getPoints(i,j);
+         int xLoc = board[i][j].getNewX();
+         int yLoc = board[i][j].getNewY();
+         if(points > max){
+           max = points;
+           oldX = j;
+           oldY = i;
+           maxX = xLoc;
+           maxY = yLoc;
+         }
+       }
+     }
+   }
+   int savedPoints = 0;
+   oldX = 0;
+   oldY = 0;
+   int safeX = 0;
+   int safeY = 0;
+   pointTree.addRight(max,oldX,oldY,maxX,maxY);
+   if(max > 0){
+     return;
+   }
+   for(int i=0; i<board[i].length; i++){
+     for(int j=0; j<board[j].length; j++){
+       if(board[i][j].getStatus() == false){
+         int points = board[i][j].getPoints(i,j);
+         int xLoc = board[i][j].getSafeX();
+         int yLoc = board[i][j].getSafeY();
+         if(points > savedPoints){
+           savedPoints = points;
+           oldX = j;
+           oldY = i;
+           safeX = xLoc;
+           safeY = yLoc;
+         }
+       }
+     }
+   }
+   pointTree.addLeft(savedPoints,oldX,oldY,safeX,safeY);
+ }
+	
 	public CanadianCheckers(){
 		setTitle("Canadian Checkers");
 		setVisible(true);
