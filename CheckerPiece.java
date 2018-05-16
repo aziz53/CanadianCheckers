@@ -34,49 +34,33 @@ public class CheckerPiece {
   //method that returns the x coordinate of the checkerpiece on the board
   //@returns the x coordinate
   public int returnXCoord() {
-   return this.xCoord; 
+    return this.xCoord; 
   }
   
   //method that returns the y coordinate of the checkerpiece on the board
   //@returns the y coordinate
   public int returnYCoord() {
-   return this.yCoord; 
+    return this.yCoord; 
   }
   
   //method that returns the status of the checkerpiece (black/white, red/blue, etc)
   //@returns the type of checkerpiece
   public boolean getStatus() {
-   return this.status; 
+    return this.status; 
   }
   
   //method that checks whether or not the method exists on the board
   //@returns the existence of the piece
   public boolean getExistence() { 
     return this.doesExist;
-  } 
-  
-  /**
-   * Method to set if a piece exists or not.
-   * @param exist whether or not the piece exists.
-   */
-  public void setExistence(boolean exist){
-	  this.doesExist = exist;
-  }
-  
-  /**
-   * Method to set the colour of a piece.
-   * @param status the colour of the piece (status)
-   */
-  public void setStatus(boolean status){
-	  this.status = status;
-  }
+  }                              
   
   //sets the coordinate of the piece on the board
   //@param1 is the x coordinate of the piece
   //@param2 is the y coordinate of the piece
   public void setCoords(int x, int y) {
-   this.xCoord=x;
-   this.yCoord=y;
+    this.xCoord=x;
+    this.yCoord=y;
   }
   
   //method that checks whether or not a piece can take (white piece)
@@ -84,16 +68,23 @@ public class CheckerPiece {
     if(this.status) {
       
       //Checks whether or not a piece to the diagonal top left of the piece and if its opposite status
-      if (CanadianCheckers.board[this.returnXCoord()-1][this.returnYCoord()+1].getExistence()) {
-        if(CanadianCheckers.board[this.returnXCoord()-1][this.returnYCoord()+1].getStatus()!=this.status) {
-         return true; 
+      if(this.returnXCoord()<=11 && this.returnXCoord()>=2 && this.returnYCoord()>=2 && this.returnYCoord()<=11) {
+        if (board[this.returnXCoord()-1][this.returnYCoord()-1].getExistence()) {
+          if(board[this.returnXCoord()-1][this.returnYCoord()-1].getStatus()!=this.status) {
+            if(board[this.returnXCoord()-2][this.returnYCoord()-2].getExistence()==false) {
+              return true; 
+            }
+          }
         }
       }
       
       //Checks whether or not a piece to the diagonal top right of the piece and if its opposite status
-      if (CanadianCheckers.board[this.returnXCoord()+1][this.returnYCoord()+1].getExistence()) {
-        if(CanadianCheckers.board[this.returnXCoord()+1][this.returnYCoord()+1].getStatus()!=this.status) {
-         return true; 
+      if(this.returnXCoord()<=9 && this.returnXCoord()>=0 && this.returnYCoord()>=2 && this.returnYCoord()<=11) {
+      if (board[this.returnXCoord()+1][this.returnYCoord()-1].getExistence()) {
+        if(board[this.returnXCoord()+1][this.returnYCoord()-1].getStatus()!=this.status) {
+          if(board[this.returnXCoord()+2][this.returnYCoord()-2].getStatus()==false) {
+            return true; 
+          }
         }
       }
       
@@ -101,21 +92,27 @@ public class CheckerPiece {
     
     //method that checks whether or not a piece can take (black piece)
     else if (!this.status){
-      
-      //Checks whether or not a piece to the diagonal top left of the piece and if its opposite status
-      if (CanadianCheckers.board[this.returnXCoord()-1][this.returnYCoord()-1].getExistence()) {
-        if(CanadianCheckers.board[this.returnXCoord()-1][this.returnYCoord()-1].getStatus()!=this.status) {
-         return true; 
+      if(this.returnXCoord()<=11 && this.returnXCoord()>=2 && this.returnYCoord()>=0 && this.returnYCoord()<=9) {
+      //Checks whether or not a piece to the diagonal bottom left of the piece and if its opposite status
+      if (board[this.returnXCoord()-1][this.returnYCoord()+1].getExistence()) {
+        if(board[this.returnXCoord()-1][this.returnYCoord()+1].getStatus()!=this.status) {
+          if(board[this.returnXCoord()-2][this.returnYCoord()+2].getExistence()==false) {
+            return true; 
+          }
+        }
+      }
+      }
+      //Checks whether or not a piece to the diagonal bottom right of the piece and if its opposite status
+      if(this.returnXCoord()<=9 && this.returnXCoord()>=0 && this.returnYCoord()>=0 && this.returnYCoord()<=9) {
+      if (board[this.returnXCoord()+1][this.returnYCoord()+1].getExistence()) {
+        if(board[this.returnXCoord()+1][this.returnYCoord()+1].getStatus()!=this.status) {
+          if(board[this.returnXCoord()+2][this.returnYCoord()+2].getStatus()==false) {
+            return true; 
+          }
         }
       }
       
-      //Checks whether or not a piece to the diagonal top right of the piece and if its opposite status
-      if (CanadianCheckers.board[this.returnXCoord()+1][this.returnYCoord()-1].getExistence()) {
-        if(CanadianCheckers.board[this.returnXCoord()+1][this.returnYCoord()-1].getStatus()!=this.status) {
-         return true; 
-        }
-      }
-      
+    }
     }
     return false;
   }
