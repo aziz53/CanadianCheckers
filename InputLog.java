@@ -67,26 +67,41 @@ public class InputLog extends JFrame implements KeyListener, ActionListener {
 			if (input.getText().isEmpty()) {
 				return;
 			}
-			
-			// TODO error checking.
-			
+
+			// TODO check if it's the players turn.
+
 			String line = input.getText().trim().toUpperCase();
-			
-			if(line.indexOf(" ") == -1 || line.length() > 6){
+
+			if (line.indexOf(" ") == -1 || line.length() > 6) {
 				input.setText("");
 				JOptionPane.showMessageDialog(null, "Invalid move.");
 				return;
 			}
-			
+
 			String pieceLocation = line.substring(0, line.indexOf(" "));
-			String moveLocation = line.substring(line.indexOf(" ")+1);
-			
+			String moveLocation = line.substring(line.indexOf(" ") + 1);
+
 			int pieceCol = pieceLocation.charAt(0) - 'A' + 1;
 			int pieceRow = Integer.parseInt(pieceLocation.substring(1));
-			
+
 			int moveCol = moveLocation.charAt(0) - 'A' + 1;
 			int moveRow = Integer.parseInt(moveLocation.substring(1));
-			
+
+			if (pieceCol > 12 || moveCol > 12 || moveRow > 12 || pieceRow > 12
+					|| pieceRow + pieceCol == moveCol + moveRow) {
+				input.setText("");
+				JOptionPane.showMessageDialog(null, "Invalid move.");
+				return;
+			}
+
+			// Get the piece at the location
+			CheckerPiece piece = CanadianCheckers.board[pieceRow][pieceCol];
+			if (!piece.getExistence()) {
+				input.setText("");
+				JOptionPane.showMessageDialog(null, "Invalid move.");
+				return;
+			}
+
 			String msg = "";
 			if (!log.getText().isEmpty()) {
 				msg += "\n";
@@ -95,6 +110,9 @@ public class InputLog extends JFrame implements KeyListener, ActionListener {
 			input.setText("");
 			log.append(msg);
 			System.out.println(pieceCol + ":" + moveCol);
+
+			System.out.println(piece.getStatus());
+
 		}
 	}
 
