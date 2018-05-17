@@ -76,8 +76,8 @@ public class BoardPanel extends JPanel {
         if (checkerBoard[row][col].getExistence()) {
 
           // Setting co-ordinates of checker pieces
-          x = (col * 60) + 12;
-          y = (row * 60) + 12;
+          x = (col * 60) + 72;
+          y = (row * 60) + 72;
 
           // Drawing checker piece if it exists
           if (checkerBoard[row][col].getStatus() == true) {
