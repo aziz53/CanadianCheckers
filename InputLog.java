@@ -106,7 +106,7 @@ public class InputLog extends JFrame implements KeyListener, ActionListener {
 			if (!log.getText().isEmpty()) {
 				msg += "\n";
 			}
-			msg = "User moved " + pieceLocation + " to " + moveLocation;
+			msg += "User moved " + pieceLocation + " to " + moveLocation;
 			input.setText("");
 			log.append(msg);
 
