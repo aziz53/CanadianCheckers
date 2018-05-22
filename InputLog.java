@@ -88,7 +88,8 @@ public class InputLog extends JFrame implements KeyListener, ActionListener {
 			int moveRow = Integer.parseInt(moveLocation.substring(1)) - 1;
 
 			if (pieceCol > 12 || moveCol > 12 || moveRow > 12 || pieceRow > 12
-					|| pieceRow + pieceCol == moveCol + moveRow || pieceCol == moveCol) {
+					|| pieceRow == moveRow || pieceCol == moveCol) {
+				System.out.println("PIece does not exist bitch");
 				input.setText("");
 				JOptionPane.showMessageDialog(null, "Invalid move.");
 				return;
@@ -104,8 +105,6 @@ public class InputLog extends JFrame implements KeyListener, ActionListener {
 			
 			CheckerPiece movePiece = CanadianCheckers.board[moveRow][moveCol];
 			
-			System.out.println(myPiece.getStatus() + ", " + myPiece.getExistence());
-
 			CanadianCheckers.board[moveRow][moveCol] = myPiece;
 			CanadianCheckers.board[pieceRow][pieceCol] = movePiece;
 			
