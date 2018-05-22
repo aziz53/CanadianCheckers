@@ -81,11 +81,11 @@ public class InputLog extends JFrame implements KeyListener, ActionListener {
 			String pieceLocation = line.substring(0, line.indexOf(" "));
 			String moveLocation = line.substring(line.indexOf(" ") + 1);
 
-			int pieceCol = pieceLocation.charAt(0) - 'A' + 1;
-			int pieceRow = Integer.parseInt(pieceLocation.substring(1));
+			int pieceCol = pieceLocation.charAt(0) - 'A';
+			int pieceRow = Integer.parseInt(pieceLocation.substring(1)) - 1;
 
-			int moveCol = moveLocation.charAt(0) - 'A' + 1;
-			int moveRow = Integer.parseInt(moveLocation.substring(1));
+			int moveCol = moveLocation.charAt(0) - 'A';
+			int moveRow = Integer.parseInt(moveLocation.substring(1)) - 1;
 
 			if (pieceCol > 12 || moveCol > 12 || moveRow > 12 || pieceRow > 12
 					|| pieceRow + pieceCol == moveCol + moveRow || pieceCol == moveCol) {
@@ -95,12 +95,21 @@ public class InputLog extends JFrame implements KeyListener, ActionListener {
 			}
 
 			// Get the piece at the location
-			CheckerPiece piece = CanadianCheckers.board[pieceRow][pieceCol];
-			if (!piece.getExistence()) {
+			CheckerPiece myPiece = CanadianCheckers.board[pieceRow][pieceCol];
+			if (!myPiece.getExistence()) {
 				input.setText("");
 				JOptionPane.showMessageDialog(null, "Invalid move.");
 				return;
 			}
+			
+			CheckerPiece movePiece = CanadianCheckers.board[moveRow][moveCol];
+			
+			System.out.println(myPiece.getStatus() + ", " + myPiece.getExistence());
+
+			CanadianCheckers.board[moveRow][moveCol] = myPiece;
+			CanadianCheckers.board[pieceRow][pieceCol] = movePiece;
+			
+			MainMenu.boardPanel.repaint();
 
 			String msg = "";
 			if (!log.getText().isEmpty()) {
