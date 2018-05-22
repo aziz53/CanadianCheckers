@@ -72,7 +72,7 @@ public class InputLog extends JFrame implements KeyListener, ActionListener {
 
 			String line = input.getText().trim().toUpperCase();
 
-			if (line.indexOf(" ") == -1 || line.length() > 6) {
+			if (line.indexOf(" ") == -1 || line.length() > 7) {
 				input.setText("");
 				JOptionPane.showMessageDialog(null, "Invalid move.");
 				return;
@@ -88,7 +88,7 @@ public class InputLog extends JFrame implements KeyListener, ActionListener {
 			int moveRow = Integer.parseInt(moveLocation.substring(1));
 
 			if (pieceCol > 12 || moveCol > 12 || moveRow > 12 || pieceRow > 12
-					|| pieceRow + pieceCol == moveCol + moveRow) {
+					|| pieceRow + pieceCol == moveCol + moveRow || pieceCol == moveCol) {
 				input.setText("");
 				JOptionPane.showMessageDialog(null, "Invalid move.");
 				return;
@@ -109,9 +109,6 @@ public class InputLog extends JFrame implements KeyListener, ActionListener {
 			msg = "User moved " + pieceLocation + " to " + moveLocation;
 			input.setText("");
 			log.append(msg);
-			System.out.println(pieceCol + ":" + moveCol);
-
-			System.out.println(piece.getStatus());
 
 		}
 	}
