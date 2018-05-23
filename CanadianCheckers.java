@@ -62,45 +62,34 @@ public static void buildTree(CheckerPiece[][] board){
    for(int i=0; i<board[i].length; i++){
      for(int j=0; j<board[j].length; j++){
        if(board[i][j].getStatus() == true){
-         int points = board[i][j].getPoints(i,j);
-         int xLoc = board[i][j].getNewX();
-         int yLoc = board[i][j].getNewY();
+         int points = getPoints(board,i,j);
          if(points > max){
+           System.out.println("BEST MOVE IS DIRECTLY BELOW: From Y: " + i + " From X: " + j);
            max = points;
-           oldX = j;
-           oldY = i;
-           maxX = xLoc;
-           maxY = yLoc;
          }
        }
      }
    }
-   int savedPoints = 0;
-   oldX = 0;
-   oldY = 0;
-   int safeX = 0;
-   int safeY = 0;
-   pointTree.addRight(max,oldX,oldY,maxX,maxY);
-   if(max > 0){
-     return;
-   }
-   for(int i=0; i<board[i].length; i++){
-     for(int j=0; j<board[j].length; j++){
-       if(board[i][j].getStatus() == false){
-         int points = board[i][j].getPoints(i,j);
-         int xLoc = board[i][j].getSafeX();
-         int yLoc = board[i][j].getSafeY();
-         if(points > savedPoints){
-           savedPoints = points;
-           oldX = j;
-           oldY = i;
-           safeX = xLoc;
-           safeY = yLoc;
+   if(max == 0){
+     for(int i=0; i<board[i].length; i++){
+       for(int j=0; j<board[j].length; j++){
+         if(board[i][j].getStatus() == true){
+           if(i > -1 && j > -1){
+             if(board[i+1][j+1].getExistence() == false){
+               System.out.println("MOVE FROM: Y: " + i + " X: " + j + " TO " + "Y: " + (i+1) + " X " + (j+1));
+               break;
+             }
+           }
+           if(i > -1 && j < 12){
+             if(board[i+1][j-1].getExistence() == false){
+               System.out.println("MOVE FROM: Y: " + i + " X: " + j + " TO " + "Y: " + (i+1) + " X " + (j-1));
+               break;
+             }
+           } 
          }
        }
      }
    }
-   pointTree.addLeft(savedPoints,oldX,oldY,safeX,safeY);
  }
 	
 public static int getPoints(CheckerPiece[][] checkerBoard, int y, int x){
