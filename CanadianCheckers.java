@@ -53,7 +53,7 @@ public class CanadianCheckers extends JFrame {
 		
 	}
 	
-	 public static void buildTree(CheckerPiece[][] board){
+public static void buildTree(CheckerPiece[][] board){
    int max = 0;
    int oldX = 0;
    int oldY = 0;
@@ -101,6 +101,20 @@ public class CanadianCheckers extends JFrame {
      }
    }
    pointTree.addLeft(savedPoints,oldX,oldY,safeX,safeY);
+ }
+	
+public static int getPoints(CheckerPiece[][] checkerBoard, int y, int x){
+   if(y > -1 && x > -1){
+     if(checkerBoard[y][x].getStatus() != checkerBoard[y+1][x+1].getStatus()){
+       return 1 + getPoints(board,y+2,x+2);
+     }
+   }else if(y > -1 && x < 12){
+     if(checkerBoard[y][x].getStatus() != checkerBoard[y+1][x-1].getStatus()){
+       return 1 + getPoints(board,y+2,x-2);
+     }
+   }
+   System.out.println("Y: " + y + " X: " + x);
+   return 0;
  }
 	
 	public CanadianCheckers(){
